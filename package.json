@@ -1,0 +1,30 @@
+{
+  "name": "zerolyze",
+  "version": "1.0.0",
+  "description": "a template parser",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel ./demo/index.html",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jackie-gan/zerolyze.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jackie-gan/zerolyze/issues"
+  },
+  "homepage": "https://github.com/jackie-gan/zerolyze#readme",
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/preset-env": "^7.8.4",
+    "jest": "^25.1.0",
+    "parcel-bundler": "^1.12.4",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  }
+}

@@ -10,14 +10,14 @@ function tokenizer(inputStr) {
     let char = inputStr[currentIndex];
 
     switch (char) {
-      case '<':
+      case '(':
         tokens.push({
           type: 'brace',
           value: char
         });
         ++currentIndex;
         continue;
-      case '>':
+      case ')':
         tokens.push({
           type: 'brace',
           value: char

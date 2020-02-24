@@ -17,7 +17,7 @@ describe('test tokenizer', () => {
   });
 
   it('Words and Numbers', () => {
-    const result = tokenizer('Forever 21 is 22');
+    const result = tokenizer('Forever 21');
 
     expect(result).toEqual([{
       type: 'word',
@@ -28,18 +28,6 @@ describe('test tokenizer', () => {
     }, {
       type: 'number',
       value: '21'
-    }, {
-      type: 'whitespace',
-      value: ' '
-    }, {
-      type: 'word',
-      value: 'is'
-    }, {
-      type: 'whitespace',
-      value: ' '
-    }, {
-      type: 'number',
-      value: '22'
     }]);
   });
 
@@ -73,6 +61,111 @@ describe('test tokenizer', () => {
     }, {
       type: 'symbol',
       value: '!'
+    }]);
+  });
+
+  it('Number stick to word', () => {
+    const result = tokenizer("I'm 11th");
+
+    expect(result).toEqual([{
+      type: 'word',
+      value: 'I'
+    }, {
+      type: 'symbol',
+      value: "'"
+    }, {
+      type: 'word',
+      value: 'm'
+    }, {
+      type: 'whitespace',
+      value: ' '
+    }, {
+      type: 'number',
+      value: '11'
+    }, {
+      type: 'word',
+      value: 'th'
+    }]);
+  });
+
+  it('Has brace', () => {
+    const result = tokenizer('My name is ((name)).');
+
+    expect(result).toEqual([{
+      type: 'word',
+      value: 'My'
+    }, {
+      type: 'whitespace',
+      value: ' '
+    }, {
+      type: 'word',
+      value: 'name'
+    }, {
+      type: 'whitespace',
+      value: ' '
+    }, {
+      type: 'word',
+      value: 'is'
+    }, {
+      type: 'whitespace',
+      value: ' '
+    }, {
+      type: 'brace',
+      value: '('
+    }, {
+      type: 'brace',
+      value: '('
+    }, {
+      type: 'word',
+      value: 'name'
+    }, {
+      type: 'brace',
+      value: ')'
+    }, {
+      type: 'brace',
+      value: ')'
+    }, {
+      type: 'symbol',
+      value: '.'
+    }]);
+  });
+
+  it('Invalid brace', () => {
+    const result = tokenizer('This is ((fruit)).)');
+
+    expect(result).toEqual([{
+      type: 'word',
+      value: 'This'
+    }, {
+      type: 'whitespace',
+      value: ' '
+    }, {
+      type: 'word',
+      value: 'is'
+    }, {
+      type: 'whitespace',
+      value: ' '
+    }, {
+      type: 'brace',
+      value: '('
+    }, {
+      type: 'brace',
+      value: '('
+    }, {
+      type: 'word',
+      value: 'fruit'
+    }, {
+      type: 'brace',
+      value: ')'
+    }, {
+      type: 'brace',
+      value: ')'
+    }, {
+      type: 'symbol',
+      value: '.'
+    }, {
+      type: 'brace',
+      value: ')'
     }]);
   })
 });

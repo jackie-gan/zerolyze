@@ -2,7 +2,7 @@ const whitepaceReg = /\s/;
 const numberReg = /[0-9]/;
 const wordReg = /[a-zA-Z_]/;
 
-function tokenizer(inputStr) {
+function tokenize(inputStr) {
   const tokens = [];
   let currentIndex = 0;
 
@@ -79,4 +79,4 @@ function tokenizer(inputStr) {
   return tokens;
 }
 
-export default tokenizer;
+export default tokenize;

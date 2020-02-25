@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
+import { tokenize } from '../src/index';
 import './demo.scss'
 
 export default class Demo extends Component {
   state = {
-    template: 'this is my template, value 1 is {{value1}}, value 2 is {{value}}',
+    template: 'this is my template, value 1 is ((value1)), value 2 is ((value))',
     values: {}
+  }
+
+  startZerolyze() {
+    const { template } = this.state;
+    const tokens = tokenize(template);
   }
 
   render() {
@@ -20,14 +26,6 @@ export default class Demo extends Component {
               template: e.target.value
             })
           }}
-        />
-        <textarea 
-          value={values} 
-          onChange={(e) => {
-            this.setState({
-              values: e.target.value
-            })
-          }} 
         />
       </div>
     );

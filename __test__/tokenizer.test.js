@@ -1,8 +1,8 @@
-import tokenizer from '../src/tokenizer';
+import tokenize from '../src/tokenize';
 
 describe('test tokenizer', () => {
   it('Only words', () => {
-    const result = tokenizer('Only words');
+    const result = tokenize('Only words');
 
     expect(result).toEqual([{
       type: 'word',
@@ -17,7 +17,7 @@ describe('test tokenizer', () => {
   });
 
   it('Words and Numbers', () => {
-    const result = tokenizer('Forever 21');
+    const result = tokenize('Forever 21');
 
     expect(result).toEqual([{
       type: 'word',
@@ -32,7 +32,7 @@ describe('test tokenizer', () => {
   });
 
   it('Word Numbers and Symbols', () => {
-    const result = tokenizer('Are you 21? No!');
+    const result = tokenize('Are you 21? No!');
 
     expect(result).toEqual([{
       type: 'word',
@@ -65,7 +65,7 @@ describe('test tokenizer', () => {
   });
 
   it('Number stick to word', () => {
-    const result = tokenizer("I'm 11th");
+    const result = tokenize("I'm 11th");
 
     expect(result).toEqual([{
       type: 'word',
@@ -89,7 +89,7 @@ describe('test tokenizer', () => {
   });
 
   it('Has brace', () => {
-    const result = tokenizer('My name is ((name)).');
+    const result = tokenize('My name is ((name)).');
 
     expect(result).toEqual([{
       type: 'word',
@@ -131,7 +131,7 @@ describe('test tokenizer', () => {
   });
 
   it('Invalid brace', () => {
-    const result = tokenizer('This is ((fruit)).)');
+    const result = tokenize('This is ((fruit)).)');
 
     expect(result).toEqual([{
       type: 'word',

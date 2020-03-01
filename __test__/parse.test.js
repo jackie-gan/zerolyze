@@ -91,4 +91,27 @@ describe('test parser', () => {
       ]
     });
   });
+
+  it('Legal 2', () => {
+    const tokens = tokenize('This is ((road)) ((street))');
+
+    const ast = parse(tokens);
+
+    expect(ast).toEqual({
+      type: 'Entry',
+      body: [
+        { type: 'StringLiteral', value: 'This' },
+        { type: 'Whitespace', value: ' ' },
+        { type: 'StringLiteral', value: 'is' },
+        { type: 'Whitespace', value: ' ' },
+        { type: 'Expression', params: [
+          { type: 'StringLiteral', value: 'road' }
+        ]},
+        { type: 'Whitespace', value: ' ' },
+        { type: 'Expression', params: [
+          { type: 'StringLiteral', value: 'street' }
+        ]}
+      ]
+    });
+  });
 });

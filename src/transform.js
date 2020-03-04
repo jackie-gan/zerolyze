@@ -37,12 +37,7 @@ function transform(ast) {
       if (parent.type === 'Expression') {
         if ((next && next.type === 'Symbol') || (prev && prev.type === 'Symbol' )) {
         } else {
-          const newNode = {
-            type: 'Variable',
-            value: node.value
-          };
-
-          parent._context.push(newNode);
+          parent._context.push(node.value);
         }
       } else {
         const newNode = {

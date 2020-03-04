@@ -21,6 +21,25 @@ describe('test transform', () => {
     }).toThrow(TypeError);
   });
 
+  it('Invalid Expression: This is ((name))', () => {
+    const tokens = tokenize('This is ((name))');
+
+    const ast = parse(tokens);
+
+    const newAst = transform(ast);
+
+    expect(newAst).toEqual({
+      type: 'Entry',
+      body: [
+        { type: 'StringLiteral', value: 'This' },
+        { type: 'Whitespace', value: ' ' },
+        { type: 'StringLiteral', value: 'is' },
+        { type: 'Whitespace', value: ' ' },
+        { type: 'Expression', arguments: ['name'] }
+      ]
+    });
+  });
+
   it('Invalid Expression: This is ((person.name))', () => {
     const tokens = tokenize('This is ((person.name))');
 

@@ -114,4 +114,25 @@ describe('test parser', () => {
       ]
     });
   });
+
+  it('Legal 3', () => {
+    const tokens = tokenize('This is ((person.name))');
+
+    const ast = parse(tokens);
+
+    expect(ast).toEqual({
+      type: 'Entry',
+      body: [
+        { type: 'StringLiteral', value: 'This' },
+        { type: 'Whitespace', value: ' ' },
+        { type: 'StringLiteral', value: 'is' },
+        { type: 'Whitespace', value: ' ' },
+        { type: 'Expression', params: [
+          { type: 'StringLiteral', value: 'person' },
+          { type: 'Symbol', value: '.' },
+          { type: 'StringLiteral', value: 'name' }
+        ]}
+      ]
+    });
+  });
 });
